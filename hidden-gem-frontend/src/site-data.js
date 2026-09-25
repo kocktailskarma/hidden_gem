@@ -1,0 +1,35 @@
+export const site = {
+  name: "Hidden Gem",
+  tagline: "Restaurant",
+  logo: "/assets/brand/logo.png",
+  logoMark: "/assets/brand/logo-mark.png",
+  addressLine1: "2550 Bobcat Blvd Suite 106",
+  addressLine2: "Trophy Club, TX 76262",
+  directionsUrl: "https://www.google.com/maps/search/?api=1&query=2550+Bobcat+Blvd+Suite+106+Trophy+Club+TX+76262",
+  mapEmbedUrl: "https://www.google.com/maps?q=2550+Bobcat+Blvd+Suite+106,+Trophy+Club,+TX+76262&output=embed",
+  phone: "(682) 503-4029",
+  phoneHref: "tel:+16825034029",
+  email: "info@rajdurbars.com",
+  emailHref: "mailto:info@rajdurbars.com",
+  orderUrl: "/menu/",
+  facebook: "https://www.facebook.com/profile.php?id=61585686204903",
+  instagram: "https://www.instagram.com/hidden_gem_by_karma_/",
+  hours: [
+    ["Monday", "4 PM - 2 AM"],
+    ["Tuesday", "4 PM - 2 AM"],
+    ["Wednesday", "4 PM - 2 AM"],
+    ["Thursday", "4 PM - 2 AM"],
+    ["Friday", "11 AM - 2 AM"],
+    ["Saturday", "11 AM - 2 AM"],
+    ["Sunday", "11 AM - 2 AM"],
+  ],
+};
+
+export const navItems = [
+  ["Home", "/"],
+  ["Menu", "/menu/"],
+  ["Services", "/services/"],
+  ["About", "/about/"],
+  ["Contact", "/contact/"],
+  ["Reserve", "/reserve/"],
+];
