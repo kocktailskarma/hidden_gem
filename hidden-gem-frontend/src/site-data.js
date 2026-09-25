@@ -15,13 +15,13 @@ export const site = {
   facebook: "https://www.facebook.com/profile.php?id=61585686204903",
   instagram: "https://www.instagram.com/hidden_gem_by_karma_/",
   hours: [
-    ["Monday", "4 PM - 2 AM"],
-    ["Tuesday", "4 PM - 2 AM"],
-    ["Wednesday", "4 PM - 2 AM"],
-    ["Thursday", "4 PM - 2 AM"],
-    ["Friday", "11 AM - 2 AM"],
-    ["Saturday", "11 AM - 2 AM"],
-    ["Sunday", "11 AM - 2 AM"],
+    ["Monday", "11 AM - 11 PM"],
+    ["Tuesday", "11 AM - 11 PM"],
+    ["Wednesday", "11 AM - 11 PM"],
+    ["Thursday", "11 AM - 11 PM"],
+    ["Friday", "11 AM - 12 AM"],
+    ["Saturday", "11 AM - 12 AM"],
+    ["Sunday", "11 AM - 11 PM"],
   ],
 };
 
