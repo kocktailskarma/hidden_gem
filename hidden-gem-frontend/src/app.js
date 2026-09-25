@@ -89,7 +89,7 @@ function homePage() {
     </section>
     <section class="feature-band alt">
       <div class="split">
-        <div class="round-image reveal"><img src="/assets/food/momo-plate.png" alt="Steaming Momos" /></div>
+        <div class="round-image reveal"><img src="/assets/food/momopiece.png" alt="Steaming Momos" /></div>
         <div class="copy reveal"><span class="eyebrow">Handcrafted Delicacy</span><h2>Heavenly<br /><em>Steamed Momos</em></h2><p>Soft dumplings filled with savory flavor and served with chutney for a warm, satisfying bite. Choose them steamed, fried, or tossed in one of our house sauces.</p><a class="btn" href="/menu/" data-link>Order Now</a></div>
       </div>
     </section>
@@ -179,7 +179,8 @@ function servicesPage() {
     {
       title: "Snacks & Treats",
       icon: "treats",
-      image: "/assets/food/momo-plate.png",
+      image: "/assets/food/momopiece.png",
+      imageFit: "contain",
       description: "Explore light bites, street-style snacks, desserts, boba tea, lassi, soft drinks, and masala tea when you want something smaller or sweeter alongside your meal.",
       points: ["Chats, snacks, and munchies", "Desserts", "Boba tea options", "Lassi, tea, and soft drinks"],
     },
@@ -198,7 +199,7 @@ function servicesPage() {
       points: ["Group dining support", "Menu options for guests", "Flexible seating help", "Friendly service from start to finish"],
     },
   ];
-  return `<section class="page-title services-title"><span class="eyebrow">What We Offer</span><h1>Our <em>Services</em></h1><p>Hidden Gem is here for everyday meals, takeout, catering, and small celebrations with food that is easy to enjoy and share.</p></section><section class="service-rows">${services.map((service, index) => `<article class="service-row ${index % 2 ? "reverse" : ""}"><div class="service-photo"><img src="${service.image}" alt="${service.title}" /></div><div class="service-detail"><div class="line-icon" aria-hidden="true">${iconSvg(service.icon)}</div><h2>${service.title}</h2><p>${service.description}</p><ul>${service.points.map((point) => `<li>${point}</li>`).join("")}</ul><a class="btn" href="/contact/" data-link>Inquire Now</a></div></article>`).join("")}</section>${servicesCta()}`;
+  return `<section class="page-title services-title"><span class="eyebrow">What We Offer</span><h1>Our <em>Services</em></h1><p>Hidden Gem is here for everyday meals, takeout, catering, and small celebrations with food that is easy to enjoy and share.</p></section><section class="service-rows">${services.map((service, index) => `<article class="service-row ${index % 2 ? "reverse" : ""}"><div class="service-photo ${service.imageFit === "contain" ? "contain" : ""}"><img src="${service.image}" alt="${service.title}" /></div><div class="service-detail"><div class="line-icon" aria-hidden="true">${iconSvg(service.icon)}</div><h2>${service.title}</h2><p>${service.description}</p><ul>${service.points.map((point) => `<li>${point}</li>`).join("")}</ul><a class="btn" href="/contact/" data-link>Inquire Now</a></div></article>`).join("")}</section>${servicesCta()}`;
 }
 
 function contactPage() {
