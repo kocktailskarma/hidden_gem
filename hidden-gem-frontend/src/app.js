@@ -53,7 +53,7 @@ function footer() {
       <div class="footer-inner">
         <section>
           <a href="/" class="footer-brand" data-link><img src="${site.logo}" alt="${site.name}" /><span><strong>${site.name}</strong><small>${site.tagline}</small></span></a>
-          <p>Nepali, Indian, Thai, and boba favorites served with warm hospitality in Trophy Club.</p>
+          <p>Nepali, Indian, and boba favorites served with warm hospitality in Trophy Club.</p>
         </section>
         <section><h3>Quick Links</h3>${navItems.slice(0, 5).map(([label, href]) => pageLink(href, label)).join("")}</section>
         <section><h3>Opening Hours</h3>${site.hours.map(([day, time]) => `<p class="hour"><span>${day}</span><span>${time}</span></p>`).join("")}</section>
@@ -164,7 +164,7 @@ function formatMenuPrice(price) {
 }
 
 function aboutPage() {
-  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, Thai, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="/assets/restaurant/entrance.jpeg" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
+  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="/assets/restaurant/entrance.jpeg" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
 }
 
 function servicesPage() {
