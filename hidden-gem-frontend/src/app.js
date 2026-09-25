@@ -74,7 +74,7 @@ function homePage() {
         <h1>${site.name}</h1>
         <p>${site.tagline}</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" ${linkAttrs(site.orderUrl)}>Order Online</a>
+          <a class="btn" ${linkAttrs(site.orderUrl)}>Order Online</a>
           <a class="btn" href="/reserve/" data-link>Reserve a Table</a>
           <a class="btn" href="/menu/" data-link>View Menu</a>
         </div>

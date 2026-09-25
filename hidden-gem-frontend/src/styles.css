@@ -317,3 +317,7 @@ body{background:linear-gradient(180deg,#fffaf0 0%,#f8ecd2 48%,#efd9ad 100%);}
 
 @media (max-width:900px){.hero-logo{width:210px;max-width:44vw;margin-bottom:30px;}}
 @media (max-width:560px){.hero-logo{width:180px;max-width:58vw;margin-bottom:24px;}.menu-card{grid-template-columns:64px minmax(0,1fr);gap:14px;}.dish-head{gap:10px;}.dish-head strong{min-width:64px;}}
+
+/* Hero button hover state */
+.hero .hero-actions .btn{background:rgba(255,250,240,.68);border-color:rgba(156,106,24,.72);color:#6f4710;box-shadow:0 8px 20px rgba(70,43,8,.08);}
+.hero .hero-actions .btn:hover{background:linear-gradient(135deg,#efcf70 0%,#be8320 100%);border-color:#b67c1a;color:#241505;box-shadow:0 12px 28px rgba(131,84,14,.24);}
