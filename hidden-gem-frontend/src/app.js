@@ -89,7 +89,7 @@ function homePage() {
     </section>
     <section class="feature-band alt">
       <div class="split">
-        <div class="round-image reveal"><img src="/assets/food/momopiece.png" alt="Steaming Momos" /></div>
+        <div class="round-image reveal"><img src="/assets/food/momo-plate-with-momos.png" alt="Steaming Momos" /></div>
         <div class="copy reveal"><span class="eyebrow">Handcrafted Delicacy</span><h2>Heavenly<br /><em>Steamed Momos</em></h2><p>Soft dumplings filled with savory flavor and served with chutney for a warm, satisfying bite. Choose them steamed, fried, or tossed in one of our house sauces.</p><a class="btn" href="/menu/" data-link>Order Now</a></div>
       </div>
     </section>
@@ -179,7 +179,7 @@ function servicesPage() {
     {
       title: "Snacks & Treats",
       icon: "treats",
-      image: "/assets/food/momopiece.png",
+      image: "/assets/food/momo-plate-with-momos.png",
       imageFit: "contain",
       description: "Explore light bites, street-style snacks, desserts, boba tea, lassi, soft drinks, and masala tea when you want something smaller or sweeter alongside your meal.",
       points: ["Chats, snacks, and munchies", "Desserts", "Boba tea options", "Lassi, tea, and soft drinks"],
