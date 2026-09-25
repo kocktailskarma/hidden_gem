@@ -13,7 +13,7 @@ export const site = {
   emailHref: "mailto:info@rajdurbars.com",
   orderUrl: "/menu/",
   facebook: "https://www.facebook.com/profile.php?id=61585686204903",
-  instagram: "https://www.instagram.com/hidden_gem_by_karma_/",
+  instagram: "https://www.instagram.com/hidden_gemxzs?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==",
   hours: [
     ["Monday", "11 AM - 11 PM"],
     ["Tuesday", "11 AM - 11 PM"],
