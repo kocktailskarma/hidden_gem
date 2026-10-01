@@ -2,6 +2,24 @@ import { menuData } from "./menu-data.js";
 import { navItems, site } from "./site-data.js";
 
 const app = document.querySelector("#app");
+const siteRoot = new URL("..", import.meta.url);
+const basePath = siteRoot.pathname.endsWith("/") ? siteRoot.pathname : `${siteRoot.pathname}/`;
+
+function appUrl(path) {
+  if (!path || path.startsWith("#") || /^(https?:|mailto:|tel:)/.test(path)) return path;
+  return `${basePath}${path.replace(/^\/+/, "")}`;
+}
+
+function assetUrl(path) {
+  return new URL(path.replace(/^\/+/, ""), siteRoot).pathname;
+}
+
+function routePath(pathname = window.location.pathname) {
+  let path = pathname;
+  if (path.startsWith(basePath)) path = `/${path.slice(basePath.length)}`;
+  if (!path.startsWith("/")) path = `/${path}`;
+  return path.endsWith("/") ? path : `${path}/`;
+}
 let menuType = "food";
 let menuSearch = "";
 let menuTags = new Set();
@@ -12,15 +30,15 @@ const iconPin = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const imageIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 0 1 2.828 0L16 16m-2-2 1.586-1.586a2 2 0 0 1 2.828 0L20 14m-6-6h.01M6 20h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"></path></svg>`;
 
 function currentPath() {
-  return window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
+  return routePath();
 }
 
 function pageLink(href, label, extra = "") {
-  return `<a href="${href}" class="${extra}" data-link>${label}</a>`;
+  return `<a href="${appUrl(href)}" class="${extra}" data-link>${label}</a>`;
 }
 
 function linkAttrs(href) {
-  return href.startsWith("http") ? `href="${href}" target="_blank" rel="noopener"` : `href="${href}" data-link`;
+  return /^(https?:|mailto:|tel:)/.test(href) ? `href="${href}" target="_blank" rel="noopener"` : `href="${appUrl(href)}" data-link`;
 }
 
 function shell(content) {
@@ -28,12 +46,12 @@ function shell(content) {
   return `
     <nav class="navbar" data-navbar>
       <div class="nav-inner">
-        <a href="/" class="brand" data-link>
-          <span class="brand-logo"><img src="${site.logo}" alt="${site.name}" /></span>
+        <a href="${appUrl("/")}" class="brand" data-link>
+          <span class="brand-logo"><img src="${assetUrl(site.logo)}" alt="${site.name}" /></span>
           <span class="brand-copy"><strong>${site.name}</strong><small>${site.tagline}</small></span>
         </a>
         <div class="nav-links">
-          ${navItems.map(([label, href]) => `<a href="${href}" class="${path === href ? "active" : ""}" data-link>${label}</a>`).join("")}
+          ${navItems.map(([label, href]) => `<a href="${appUrl(href)}" class="${path === href ? "active" : ""}" data-link>${label}</a>`).join("")}
         </div>
         <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" data-menu-toggle><span></span><span></span><span></span></button>
       </div>
@@ -41,7 +59,7 @@ function shell(content) {
         ${navItems.map(([label, href]) => pageLink(href, label)).join("")}
       </div>
     </nav>
-    <a class="visit-pill" href="/contact/" data-link><span>${iconPin}</span>Visit Us</a>
+    <a class="visit-pill" href="${appUrl("/contact/")}" data-link><span>${iconPin}</span>Visit Us</a>
     <main>${content}</main>
     ${footer()}
   `;
@@ -52,7 +70,7 @@ function footer() {
     <footer class="footer">
       <div class="footer-inner">
         <section>
-          <a href="/" class="footer-brand" data-link><img src="${site.logo}" alt="${site.name}" /><span><strong>${site.name}</strong><small>${site.tagline}</small></span></a>
+          <a href="${appUrl("/")}" class="footer-brand" data-link><img src="${assetUrl(site.logo)}" alt="${site.name}" /><span><strong>${site.name}</strong><small>${site.tagline}</small></span></a>
           <p>Nepali, Indian, and boba favorites served with warm hospitality in Trophy Club.</p>
         </section>
         <section><h3>Quick Links</h3>${navItems.slice(0, 5).map(([label, href]) => pageLink(href, label)).join("")}</section>
@@ -70,27 +88,27 @@ function homePage() {
       <div class="hero-bg"></div>
       <div class="particles">${Array.from({ length: 18 }, (_, i) => `<span style="--x:${(i * 37) % 100}%;--d:${6 + (i % 7)}s"></span>`).join("")}</div>
       <div class="hero-content">
-        <img class="hero-logo" src="${site.logoMark}" alt="${site.name} logo mark" />
+        <img class="hero-logo" src="${assetUrl(site.logoMark)}" alt="${site.name} logo mark" />
         <h1>${site.name}</h1>
         <p>${site.tagline}</p>
         <div class="hero-actions">
           <a class="btn" ${linkAttrs(site.orderUrl)}>Order Online</a>
-          <a class="btn" href="/reserve/" data-link>Reserve a Table</a>
-          <a class="btn" href="/menu/" data-link>View Menu</a>
+          <a class="btn" href="${appUrl("/reserve/")}" data-link>Reserve a Table</a>
+          <a class="btn" href="${appUrl("/menu/")}" data-link>View Menu</a>
         </div>
         <div class="scroll-cue"><span>Scroll to explore</span><i></i></div>
       </div>
     </section>
     <section class="feature-band">
       <div class="split">
-        <div class="copy reveal"><span class="eyebrow">Signature Dish</span><h2>Hidden Gem<br /><em>Thali Special</em></h2><p>A generous plate built for comfort and variety, with curry, dal, rice, bread, and sides served together so you can enjoy several Hidden Gem favorites in one meal.</p><a class="btn" href="/menu/" data-link>Explore Menu</a></div>
-        <div class="round-image reveal"><img src="/assets/food/thali.png" alt="Hidden Gem Thali Special" /></div>
+        <div class="copy reveal"><span class="eyebrow">Signature Dish</span><h2>Hidden Gem<br /><em>Thali Special</em></h2><p>A generous plate built for comfort and variety, with curry, dal, rice, bread, and sides served together so you can enjoy several Hidden Gem favorites in one meal.</p><a class="btn" href="${appUrl("/menu/")}" data-link>Explore Menu</a></div>
+        <div class="round-image reveal"><img src="${assetUrl("/assets/food/thali.png")}" alt="Hidden Gem Thali Special" /></div>
       </div>
     </section>
     <section class="feature-band alt">
       <div class="split">
-        <div class="round-image reveal"><img src="/assets/food/momo-plate-with-momos.png" alt="Steaming Momos" /></div>
-        <div class="copy reveal"><span class="eyebrow">Handcrafted Delicacy</span><h2>Heavenly<br /><em>Steamed Momos</em></h2><p>Soft dumplings filled with savory flavor and served with chutney for a warm, satisfying bite. Choose them steamed, fried, or tossed in one of our house sauces.</p><a class="btn" href="/menu/" data-link>Order Now</a></div>
+        <div class="round-image reveal"><img src="${assetUrl("/assets/food/momo-plate-with-momos.png")}" alt="Steaming Momos" /></div>
+        <div class="copy reveal"><span class="eyebrow">Handcrafted Delicacy</span><h2>Heavenly<br /><em>Steamed Momos</em></h2><p>Soft dumplings filled with savory flavor and served with chutney for a warm, satisfying bite. Choose them steamed, fried, or tossed in one of our house sauces.</p><a class="btn" href="${appUrl("/menu/")}" data-link>Order Now</a></div>
       </div>
     </section>
     ${servicesPreview()}
@@ -108,15 +126,15 @@ function servicesPreview() {
 }
 
 function ctaBlock() {
-  return `<section class="cta"><h2>Discover the<br /><em>Hidden Gem</em></h2><p>Visit us in Trophy Club for comforting curries, momos, noodles, boba tea, and a menu made for sharing.</p><div class="hero-actions"><a class="btn" href="/reserve/" data-link>Reserve a Table</a><a class="btn" href="/menu/" data-link>View Menu</a><a class="btn" href="/contact/" data-link>Get Directions</a></div><div class="hours"><h3>Opening Hours</h3>${site.hours.map(([d, t]) => `<p><span>${d}</span><span>${t}</span></p>`).join("")}</div><div class="cta-socials"><a href="${site.facebook}" target="_blank" rel="noopener">Facebook</a><a href="${site.instagram}" target="_blank" rel="noopener">Instagram</a></div></section>`;
+  return `<section class="cta"><h2>Discover the<br /><em>Hidden Gem</em></h2><p>Visit us in Trophy Club for comforting curries, momos, noodles, boba tea, and a menu made for sharing.</p><div class="hero-actions"><a class="btn" href="${appUrl("/reserve/")}" data-link>Reserve a Table</a><a class="btn" href="${appUrl("/menu/")}" data-link>View Menu</a><a class="btn" href="${appUrl("/contact/")}" data-link>Get Directions</a></div><div class="hours"><h3>Opening Hours</h3>${site.hours.map(([d, t]) => `<p><span>${d}</span><span>${t}</span></p>`).join("")}</div><div class="cta-socials"><a href="${site.facebook}" target="_blank" rel="noopener">Facebook</a><a href="${site.instagram}" target="_blank" rel="noopener">Instagram</a></div></section>`;
 }
 
 function servicesCta() {
-  return `<section class="cta simple-cta"><h2>Ready to Visit<br /><em>Hidden Gem?</em></h2><p>Tell us what you are planning and we will help with dine-in, catering, or private event details.</p><div class="hero-actions"><a class="btn" href="/contact/" data-link>Contact Us</a><a class="btn" href="/menu/" data-link>View Menu</a></div></section>`;
+  return `<section class="cta simple-cta"><h2>Ready to Visit<br /><em>Hidden Gem?</em></h2><p>Tell us what you are planning and we will help with dine-in, catering, or private event details.</p><div class="hero-actions"><a class="btn" href="${appUrl("/contact/")}" data-link>Contact Us</a><a class="btn" href="${appUrl("/menu/")}" data-link>View Menu</a></div></section>`;
 }
 
 function aboutCta() {
-  return `<section class="cta simple-cta"><h2>Come Experience the<br /><em>Hidden Gem Difference</em></h2><p>Stop by for a flavorful meal, bring your family, or explore the menu before your next visit.</p><div class="hero-actions"><a class="btn" href="/menu/" data-link>View Menu</a><a class="btn" href="/contact/" data-link>Contact Us</a></div></section>`;
+  return `<section class="cta simple-cta"><h2>Come Experience the<br /><em>Hidden Gem Difference</em></h2><p>Stop by for a flavorful meal, bring your family, or explore the menu before your next visit.</p><div class="hero-actions"><a class="btn" href="${appUrl("/menu/")}" data-link>View Menu</a><a class="btn" href="${appUrl("/contact/")}" data-link>Contact Us</a></div></section>`;
 }
 
 function menuPage() {
@@ -141,7 +159,7 @@ function menuPage() {
           </div>
           <input data-menu-search placeholder="Search menu..." value="${escapeHtml(menuSearch)}" />
           <a class="btn" ${linkAttrs(site.orderUrl)}>Order Online</a>
-          <a class="btn btn-gold" href="/menu/print/" target="_blank" rel="noopener">Download PDF</a>
+          <a class="btn btn-gold" href="${appUrl("/menu/print/")}" target="_blank" rel="noopener">Download PDF</a>
         </div>
         <div class="filters"><span>Filter:</span>${["popular", "veg", "spicy"].map((tag) => `<button class="${menuTags.has(tag) ? "selected" : ""}" data-menu-tag="${tag}">${tag}</button>`).join("")}</div>
         <div class="category-pills">${filtered.map((category) => `<a href="#${category.id}">${category.name}</a>`).join("")}</div>
@@ -164,7 +182,7 @@ function formatMenuPrice(price) {
 }
 
 function aboutPage() {
-  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="/assets/restaurant/entrance.jpeg" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
+  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="${assetUrl("/assets/restaurant/entrance.jpeg")}" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
 }
 
 function servicesPage() {
@@ -199,7 +217,7 @@ function servicesPage() {
       points: ["Group dining support", "Menu options for guests", "Flexible seating help", "Friendly service from start to finish"],
     },
   ];
-  return `<section class="page-title services-title"><span class="eyebrow">What We Offer</span><h1>Our <em>Services</em></h1><p>Hidden Gem is here for everyday meals, takeout, catering, and small celebrations with food that is easy to enjoy and share.</p></section><section class="service-rows">${services.map((service, index) => `<article class="service-row ${index % 2 ? "reverse" : ""}"><div class="service-photo ${service.imageFit === "contain" ? "contain" : ""}"><img src="${service.image}" alt="${service.title}" /></div><div class="service-detail"><div class="line-icon" aria-hidden="true">${iconSvg(service.icon)}</div><h2>${service.title}</h2><p>${service.description}</p><ul>${service.points.map((point) => `<li>${point}</li>`).join("")}</ul><a class="btn" href="/contact/" data-link>Inquire Now</a></div></article>`).join("")}</section>${servicesCta()}`;
+  return `<section class="page-title services-title"><span class="eyebrow">What We Offer</span><h1>Our <em>Services</em></h1><p>Hidden Gem is here for everyday meals, takeout, catering, and small celebrations with food that is easy to enjoy and share.</p></section><section class="service-rows">${services.map((service, index) => `<article class="service-row ${index % 2 ? "reverse" : ""}"><div class="service-photo ${service.imageFit === "contain" ? "contain" : ""}"><img src="${assetUrl(service.image)}" alt="${service.title}" /></div><div class="service-detail"><div class="line-icon" aria-hidden="true">${iconSvg(service.icon)}</div><h2>${service.title}</h2><p>${service.description}</p><ul>${service.points.map((point) => `<li>${point}</li>`).join("")}</ul><a class="btn" href="${appUrl("/contact/")}" data-link>Inquire Now</a></div></article>`).join("")}</section>${servicesCta()}`;
 }
 
 function contactPage() {
@@ -208,7 +226,7 @@ function contactPage() {
 }
 
 function reservePage() {
-  return `<section class="page-title reserve-title"><span class="eyebrow">Book Your Table</span><h1>Reserve <em>a Table</em></h1><p>Plan your visit to Hidden Gem and enjoy a relaxed meal with the people you care about.</p></section><section class="reservation-embed" aria-label="Reservation details"><div class="reservation-card"><span class="eyebrow">Reservations</span><h2>OpenTable Coming Soon</h2><p>Online reservations will be added once the OpenTable details are ready. For now, please call us or contact the restaurant directly.</p><div class="hero-actions"><a class="btn btn-gold" href="${site.phoneHref}">Call ${site.phone}</a><a class="btn" href="/contact/" data-link>Contact Us</a></div></div></section>`;
+  return `<section class="page-title reserve-title"><span class="eyebrow">Book Your Table</span><h1>Reserve <em>a Table</em></h1><p>Plan your visit to Hidden Gem and enjoy a relaxed meal with the people you care about.</p></section><section class="reservation-embed" aria-label="Reservation details"><div class="reservation-card"><span class="eyebrow">Reservations</span><h2>OpenTable Coming Soon</h2><p>Online reservations will be added once the OpenTable details are ready. For now, please call us or contact the restaurant directly.</p><div class="hero-actions"><a class="btn btn-gold" href="${site.phoneHref}">Call ${site.phone}</a><a class="btn" href="${appUrl("/contact/")}" data-link>Contact Us</a></div></div></section>`;
 }
 
 function iconSvg(name) {
@@ -253,7 +271,7 @@ function mailIcon() {
 
 function printMenuPage() {
   const categories = [...menuData.food.categories, ...menuData.treats.categories].filter((category) => category.items.length);
-  return `<section class="print-menu"><div class="print-head"><img src="${site.logo}" alt="${site.name}" /><h1>${site.name}</h1><p>${site.tagline}</p></div>${categories.map((category) => `<section><h2>${category.name}</h2>${category.items.map((item) => `<div class="print-item"><span>${item.name}</span><strong>${formatMenuPrice(item.price)}</strong></div>`).join("")}</section>`).join("")}</section>`;
+  return `<section class="print-menu"><div class="print-head"><img src="${assetUrl(site.logo)}" alt="${site.name}" /><h1>${site.name}</h1><p>${site.tagline}</p></div>${categories.map((category) => `<section><h2>${category.name}</h2>${category.items.map((item) => `<div class="print-item"><span>${item.name}</span><strong>${formatMenuPrice(item.price)}</strong></div>`).join("")}</section>`).join("")}</section>`;
 }
 
 function notFoundPage() {
@@ -281,7 +299,8 @@ function bind() {
     const href = link.getAttribute("href");
     if (!href || href.startsWith("http") || href.startsWith("tel:") || href.startsWith("mailto:")) return;
     event.preventDefault();
-    history.pushState(null, "", href);
+    const target = new URL(href, window.location.href);
+    history.pushState(null, "", `${target.pathname}${target.search}${target.hash}`);
     render();
     scrollTo({ top: 0, behavior: "instant" });
   }));
