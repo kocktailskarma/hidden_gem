@@ -323,3 +323,10 @@ body{background:linear-gradient(180deg,#fffaf0 0%,#f8ecd2 48%,#efd9ad 100%);}
 .hero .hero-actions .btn:hover{background:linear-gradient(135deg,#efcf70 0%,#be8320 100%);border-color:#b67c1a;color:#241505;box-shadow:0 12px 28px rgba(131,84,14,.24);}
 /* Natural Google Maps colors */
 .map-panel iframe{filter:none;opacity:1;}
+/* New logo presentation */
+.brand-logo{width:74px;height:74px;border-radius:999px;overflow:hidden;flex:0 0 auto;box-shadow:0 6px 16px rgba(54,33,8,.18);}
+.brand-logo img{width:100%;height:100%;object-fit:cover;border-radius:999px;}
+.footer-brand img{width:58px;height:58px;border-radius:999px;object-fit:cover;box-shadow:0 6px 16px rgba(54,33,8,.14);}
+.hero-logo{width:170px!important;max-width:24vw!important;margin:0 auto 28px!important;border-radius:999px;object-fit:cover;box-shadow:0 12px 30px rgba(22,14,4,.34)!important;}
+@media (max-width:900px){.brand-logo{width:62px;height:62px;}.hero-logo{width:145px!important;max-width:36vw!important;margin-bottom:24px!important;}}
+@media (max-width:560px){.hero-logo{width:122px!important;max-width:44vw!important;}}
