@@ -330,3 +330,6 @@ body{background:linear-gradient(180deg,#fffaf0 0%,#f8ecd2 48%,#efd9ad 100%);}
 .hero-logo{width:170px!important;max-width:24vw!important;margin:0 auto 28px!important;border-radius:999px;object-fit:cover;box-shadow:0 12px 30px rgba(22,14,4,.34)!important;}
 @media (max-width:900px){.brand-logo{width:62px;height:62px;}.hero-logo{width:145px!important;max-width:36vw!important;margin-bottom:24px!important;}}
 @media (max-width:560px){.hero-logo{width:122px!important;max-width:44vw!important;}}
+/* Remove decorative ring around food feature images */
+.round-image{border:0;background:transparent;}
+.round-image:before{display:none;}
