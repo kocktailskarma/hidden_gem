@@ -226,7 +226,7 @@ function contactPage() {
 }
 
 function reservePage() {
-  return `<section class="page-title reserve-title"><span class="eyebrow">Book Your Table</span><h1>Reserve <em>a Table</em></h1><p>Plan your visit to Hidden Gem and enjoy a relaxed meal with the people you care about.</p></section><section class="reservation-embed" aria-label="Reservation details"><div class="reservation-card"><span class="eyebrow">Reservations</span><h2>OpenTable Coming Soon</h2><p>Online reservations will be added once the OpenTable details are ready. For now, please call us or contact the restaurant directly.</p><div class="hero-actions"><a class="btn btn-gold" href="${site.phoneHref}">Call ${site.phone}</a><a class="btn" href="${appUrl("/contact/")}" data-link>Contact Us</a></div></div></section>`;
+  return `<section class="page-title reserve-title"><span class="eyebrow">Book Your Table</span><h1>Reserve <em>a Table</em></h1><p>Plan your visit to Hidden Gem and enjoy a relaxed meal with the people you care about.</p></section><section class="reservation-embed" aria-label="Reservation details"><div class="reservation-card"><span class="eyebrow">Reservations</span><h2>Call Us for Reservations</h2><p>To reserve a table, please call us at ${site.phone}.</p><div class="hero-actions"><a class="btn btn-gold" href="${site.phoneHref}">Call ${site.phone}</a></div></div></section>`;
 }
 
 function iconSvg(name) {
