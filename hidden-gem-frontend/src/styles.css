@@ -340,3 +340,25 @@ body{background:linear-gradient(180deg,#fffaf0 0%,#f8ecd2 48%,#efd9ad 100%);}
 @media (max-width:560px){.hero-logo{width:104px!important;max-width:38vw!important;}.hero h1{font-size:42px;}}
 /* Clean about image frame */
 .about-frame:before{display:none;}
+/* Mobile menu usability fixes */
+@media (max-width:700px){
+  .menu-page{padding:104px 12px 72px;}
+  .menu-controls{position:sticky;top:82px;z-index:45;margin:0 -4px 22px;padding:10px 8px 12px;background:rgba(255,250,240,.98);box-shadow:0 10px 24px rgba(87,54,10,.12);backdrop-filter:blur(12px);border-bottom:1px solid rgba(156,106,24,.14);}
+  .menu-controls .menu-toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 9px;padding:0;}
+  .menu-controls .tabs{grid-column:1 / -1;width:100%;display:grid;grid-template-columns:1fr 1fr;padding:3px;}
+  .menu-controls .tabs button{padding:9px 8px;font-size:14px;letter-spacing:.08em;}
+  .menu-controls .menu-toolbar input{grid-column:1 / -1;width:100%;min-height:40px;margin:0;font-size:15px;}
+  .menu-controls .menu-toolbar .btn{width:100%;min-height:38px;padding:0 8px;font-size:12px;letter-spacing:.11em;}
+  .menu-controls .filters{margin:0 0 9px;gap:8px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+  .menu-controls .filters::-webkit-scrollbar,.menu-controls .category-pills::-webkit-scrollbar{display:none;}
+  .menu-controls .filters span{flex:0 0 auto;font-size:14px;}
+  .menu-controls .filters button{flex:0 0 auto;padding:7px 14px;font-size:14px;}
+  .menu-controls .category-pills{margin:0;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:2px;}
+  .menu-controls .category-pills a{flex:0 0 auto;scroll-snap-align:start;padding:9px 15px;font-size:14px;white-space:nowrap;}
+  .menu-sections{margin-top:18px;}
+  .menu-category{scroll-margin-top:285px;margin-bottom:48px;}
+  .menu-category h2{font-size:34px;line-height:1.05;margin-top:0;}
+  .mobile-panel{z-index:80;top:92px;max-height:calc(100vh - 112px);overflow:auto;}
+  .visit-pill{right:10px;bottom:10px;padding:9px 13px;gap:8px;font-size:13px;letter-spacing:.07em;box-shadow:0 10px 24px rgba(94,59,8,.22);}
+  .visit-pill span{width:28px;height:28px;}
+}
