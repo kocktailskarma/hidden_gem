@@ -335,6 +335,6 @@ body{background:linear-gradient(180deg,#fffaf0 0%,#f8ecd2 48%,#efd9ad 100%);}
 .round-image:before{display:none;}
 /* Hero logo and title balance */
 .hero-logo{width:128px!important;max-width:18vw!important;margin:0 auto 30px!important;}
-.hero h1{font-size:clamp(48px,5.8vw,78px);letter-spacing:.085em;color:#b98322!important;-webkit-text-fill-color:#b98322!important;text-shadow:0 2px 2px rgba(255,248,232,.55),0 8px 22px rgba(20,12,4,.36),0 0 1px rgba(255,236,174,.9)!important;}
+.hero h1{font-size:clamp(44px,4.9vw,68px);letter-spacing:.08em;color:#d0a13c!important;-webkit-text-fill-color:#d0a13c!important;text-shadow:0 2px 3px rgba(18,10,2,.82),0 0 16px rgba(255,241,188,.34),0 8px 24px rgba(0,0,0,.38)!important;}
 @media (max-width:900px){.hero-logo{width:118px!important;max-width:30vw!important;margin-bottom:24px!important;}.hero h1{font-size:clamp(42px,10vw,58px);letter-spacing:.07em;}}
 @media (max-width:560px){.hero-logo{width:104px!important;max-width:38vw!important;}.hero h1{font-size:42px;}}
