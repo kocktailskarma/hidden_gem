@@ -182,7 +182,7 @@ function formatMenuPrice(price) {
 }
 
 function aboutPage() {
-  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="${assetUrl("/assets/restaurant/lobby.jpeg")}" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
+  return `<section class="page-hero about-hero"><div><span class="eyebrow">Our Story</span><h1>About <em>Hidden Gem</em></h1><p>Hidden Gem brings Nepali, Indian, and boba favorites to Trophy Club with a menu built around bold flavors, comforting meals, and fresh-made favorites.</p><p>From momos and thali plates to curries, biryanis, noodles, and tea drinks, our kitchen focuses on generous portions, familiar comfort, and dishes guests will want to come back for.</p></div><div class="about-frame"><img src="${assetUrl("/assets/restaurant/main-restaurant.jpeg")}" alt="Hidden Gem Entrance" /></div></section><section class="section values-section"><span class="eyebrow">What We Stand For</span><h2>Our <em>Values</em></h2><div class="card-grid values-grid">${["Excellence", "Authenticity", "Hospitality", "Sustainability"].map((v) => `<article class="service-card value-card"><div class="service-icon" aria-hidden="true">${iconSvg(valueIcon(v))}</div><h3>${v}</h3><p>${valueText(v)}</p></article>`).join("")}</div></section>${aboutCta()}`;
 }
 
 function servicesPage() {
@@ -190,7 +190,7 @@ function servicesPage() {
     {
       title: "Fine Dining",
       icon: "dining",
-      image: "/assets/restaurant/lobby.jpeg",
+      image: "/assets/restaurant/main-restaurant.jpeg",
       description: "Settle in for a comfortable meal with curries, momos, rice plates, noodles, snacks, and drinks made for both quick visits and full family dinners.",
       points: ["Nepali and Indian favorites", "Fresh momos and thali plates", "Vegetarian and non-vegetarian options", "Boba tea and chilled drinks"],
     },
@@ -212,7 +212,7 @@ function servicesPage() {
     {
       title: "Private Events",
       icon: "events",
-      image: "/assets/restaurant/lobby-1.jpeg",
+      image: "/assets/restaurant/main-restaurant.jpeg",
       description: "Host birthdays, family dinners, team meals, and small celebrations with flavorful food and a comfortable space for your guests.",
       points: ["Group dining support", "Menu options for guests", "Flexible seating help", "Friendly service from start to finish"],
     },
